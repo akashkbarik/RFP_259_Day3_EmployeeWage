@@ -4,24 +4,32 @@ public class EmployeeWage {
     public static void main(String[] args) {
         System.out.println("welcome to the EmployeeWage program\n...............................");
         //Constant
-        int IS_PRESENT = 1;
-        int IS_PART_TIME = 2;
-        int SALARY_PER_HOUR = 20;
+        final int IS_PRESENT = 1;
+        final int IS_PART_TIME = 2;
+        final int SALARY_PER_HOUR = 20;
 
-        double empCheck = Math.floor(Math.random() * 10) % 3;
+        //Variables
+        int empCheck = (int)(Math.floor(Math.random() * 10) % 3) ;
         System.out.println(empCheck);
-        int empHrs ;
+        int empHr = 0;
 
-        if (empCheck == IS_PRESENT){
-            empHrs = 8;
-        } else if (empCheck == IS_PART_TIME) {
-            empHrs = 4;
-        } else {
-            empHrs = 0;
+        switch(empCheck) {
+            case IS_PRESENT :
+                empHr = 8;
+                break;
+
+            case IS_PART_TIME :
+                empHr=4;
+                break;
+
+            default :
+                empHr=0;
+                break;
         }
-        double empSalary = empHrs * SALARY_PER_HOUR;
 
-        System.out.println("Employee has earned " +empSalary+ " dollar per day");
+        double empSalary = empHr * SALARY_PER_HOUR;
+
+        System.out.println("Emp Wage : "+empSalary);
     }
 }
 
