@@ -4,40 +4,42 @@ public class EmployeeWage {
     public static void main(String[] args) {
         System.out.println("welcome to the EmployeeWage program\n...............................");
         //Constant
-        final int IS_PRESENT = 1;
+        final int IS_FULL_TIME = 1;
         final int IS_PART_TIME = 2;
         final int SALARY_PER_HOUR = 20;
-        final int TOTAL_WORK_DAY = 20;
-
+        final int NUM_OF_WORKING_DAYS = 20;
+        final int MAX_HRS_IN_MONTH = 100;
         //Variables
         int empCheck;
-        int empHr ;
-        int totalSalary = 0;
 
-        for (int i=1;i<=TOTAL_WORK_DAY;i++) {
-            empCheck = (int)(Math.floor(Math.random() * 10) % 3);
-            System.out.println(empCheck);
-            switch(empCheck) {
-                case IS_PRESENT :
+        int empHr;
+        int totalEmpHrs = 0;
+        int totalWorkingDays = 0;
+
+        while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
+            totalWorkingDays++;
+            empCheck = (int) (Math.floor(Math.random() * 10) % 3);
+            switch (empCheck) {
+                case IS_FULL_TIME:
                     empHr = 8;
                     break;
 
-                case IS_PART_TIME :
-                    empHr=4;
+                case IS_PART_TIME:
+                    empHr = 4;
                     break;
 
-                default :
-                    empHr=0;
-                    break;
+                default:
+                    empHr = 0;
             }
 
-            double empSalary = empHr * SALARY_PER_HOUR;
-            totalSalary+=empSalary;
-            totalSalary = totalSalary + (int)empSalary;
+            totalEmpHrs += empHr;
+            System.out.println("#Day: " + totalWorkingDays + " EmpHrs: " + empHr);
+
 
         }
-
-        System.out.println("Monthly Emp Wage : "+totalSalary);
+        System.out.println("Total emp hours of the employee = " + totalEmpHrs);
+        int totalEmpWage = totalEmpHrs * SALARY_PER_HOUR;
+        System.out.println("Total Emp Wage: " + totalEmpWage);
     }
 }
 
