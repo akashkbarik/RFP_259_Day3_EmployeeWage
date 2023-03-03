@@ -1,39 +1,53 @@
 package day3.assignment.employeewage;
 
 public class EmployeeWage {
-    static final int IS_PRESENT = 1;
-    static final int IS_PART_TIME = 2;
+    static final int IS_PART_TIME = 1;
+    static final int IS_FULL_TIME = 2;
 
-    private void wagesTillMonth( int SALARY_PER_HOUR , int TOTAL_WORK_DAY , int MAX_WORKING_HOUR , int FULL_DAY_WORKING_HOUR ) {
-        int empCheck;
+    private final String company;
+    private final int empRatePerHour;
+    private final int numOfWorkingDays;
+    private final int maxHoursPerMonth;
+
+    public EmployeeWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+        this.company = company;
+        this.empRatePerHour = empRatePerHour;
+        this.maxHoursPerMonth = maxHoursPerMonth;
+        this.numOfWorkingDays = numOfWorkingDays;
+    }
+
+    public static void main(String[] args) {
+
+        EmployeeWage dmart = new EmployeeWage("Dmart", 20, 28, 100);
+
+
         int empHr = 0;
-        int day = 0;
-        while (day < TOTAL_WORK_DAY && (empHr + FULL_DAY_WORKING_HOUR) <= MAX_WORKING_HOUR) {
-            day++;
-            empCheck = (int) (Math.floor(Math.random() * 10) % 3);
+        int totalemphr = 0;
+        int totalWorkingDays = 0;
+        while (totalemphr <= dmart.maxHoursPerMonth && totalWorkingDays <= dmart.numOfWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
 
             switch (empCheck) {
-                case IS_PRESENT:
-                    empHr += FULL_DAY_WORKING_HOUR;
+                case IS_FULL_TIME:
+                    empHr = 8;
                     break;
 
                 case IS_PART_TIME:
-                    empHr += (FULL_DAY_WORKING_HOUR / 2);
+                    empHr = 4;
                     break;
 
                 default:
-                    empHr += 0;
+                    empHr = 0;
                     break;
             }
-            System.out.println("Working day : " + day + " (Present : " + empCheck + ")");
+            totalemphr += empHr;
+            System.out.println("Working day : " + totalWorkingDays + " (Present : " + empCheck + ")");
         }
-       int totalSalary = empHr * SALARY_PER_HOUR;
-        System.out.println("Monthly Emp Wage : " + totalSalary + "\nTotal working hour : " + empHr);
+        int totalSalary = totalemphr * dmart.empRatePerHour;
+        System.out.println("Monthly Emp Wage for the company: " + dmart.company + " " + totalSalary + "\nTotal working hour : " + totalemphr);
     }
-    public static void main(String[] args) {
-        EmployeeWage obj = new EmployeeWage();
-        obj.wagesTillMonth(20, 20 , 100, 8);
-    }
+
 }
 
 
