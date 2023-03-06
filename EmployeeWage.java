@@ -1,53 +1,29 @@
 package day3.assignment.employeewage;
 
 public class EmployeeWage {
-    static final int IS_PART_TIME = 1;
-    static final int IS_FULL_TIME = 2;
-
-    private final String company;
-    private final int empRatePerHour;
-    private final int numOfWorkingDays;
-    private final int maxHoursPerMonth;
-
-    public EmployeeWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
-        this.company = company;
-        this.empRatePerHour = empRatePerHour;
-        this.maxHoursPerMonth = maxHoursPerMonth;
-        this.numOfWorkingDays = numOfWorkingDays;
-    }
-
     public static void main(String[] args) {
 
-        EmployeeWage dmart = new EmployeeWage("Dmart", 20, 28, 100);
+        Employee infosysEmp = new Employee("Infosys", "Akash", 6, 18, 22, 50);
+        int infosysEmpWage = infosysEmp.calculateEmpWage();
+        System.out.println(infosysEmp.empName + " is working with " + infosysEmp.companyName + ", and he is earning "
+                + infosysEmpWage + "$ monthly");
 
+        Employee wiproEmp = new Employee("Wipro", "nios", 10, 18, 30, 80);
+        int wiproEmpWage = wiproEmp.calculateEmpWage();
+        System.out.println(wiproEmp.empName + " is working with " + wiproEmp.companyName + ", and he is earning "
+                + wiproEmpWage + "$ monthly");
 
-        int empHr = 0;
-        int totalemphr = 0;
-        int totalWorkingDays = 0;
-        while (totalemphr <= dmart.maxHoursPerMonth && totalWorkingDays <= dmart.numOfWorkingDays) {
-            totalWorkingDays++;
-            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
+        Employee dmartEmp = new Employee("DMart", "John", 8, 20, 20, 60);
+        int dmartEmpWage = dmartEmp.calculateEmpWage();
 
-            switch (empCheck) {
-                case IS_FULL_TIME:
-                    empHr = 8;
-                    break;
+        System.out.println(dmartEmp.empName + " is working with " + dmartEmp.companyName + ", and he is earning "
+                + dmartEmpWage + "$ monthly");
 
-                case IS_PART_TIME:
-                    empHr = 4;
-                    break;
+        Employee rILEmp = new Employee("Reliance", "Tony", 9, 15, 25, 80);
+        int rILEmpWage = rILEmp.calculateEmpWage();
+        System.out.println(rILEmp.empName + " is working with " + rILEmp.companyName + ", and he is earning "
+                + rILEmpWage + "$ monthly");
 
-                default:
-                    empHr = 0;
-                    break;
-            }
-            totalemphr += empHr;
-            System.out.println("Working day : " + totalWorkingDays + " (Present : " + empCheck + ")");
-        }
-        int totalSalary = totalemphr * dmart.empRatePerHour;
-        System.out.println("Monthly Emp Wage for the company: " + dmart.company + " " + totalSalary + "\nTotal working hour : " + totalemphr);
     }
 
 }
-
-
